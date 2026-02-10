@@ -50,7 +50,7 @@ Node* addNodeAtEnd(Node* head, int x){
 Node* createListFromArray(int arr[], int n){
     Node* head = NULL; // always initialise pointers with null if not initialising while declaration
     for(int i = 0; i < n; i++){
-        head = addNode(head, arr[i]);
+        head = addNodeAtEnd(head, arr[i]);
     }
     return head;
 }
