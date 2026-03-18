@@ -68,15 +68,15 @@ poly mul(poly head1, poly head2) {
 	poly p1 = head1, p2 = head2;
 	poly newHead = NULL;
 	while(p2 != NULL){
-		poly temp = p1;
-		while(temp != NULL){
-			int resultCoeff = p2->coeff * temp->coeff;
-			int resultExp = p2->exp + temp->exp;
+		while(p1 != NULL){
+			int resultCoeff = p2->coeff * p1->coeff;
+			int resultExp = p2->exp + p1->exp;
 			poly newNode = createNode(resultCoeff, resultExp);
 			newHead = addTerm(newHead, newNode);
-			temp = temp->next;
+			p1 = p1->next;
 		}
 		p2 = p2->next;
+        p1 = head1;
 	}
 	return newHead;
 }
