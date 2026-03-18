@@ -5,49 +5,51 @@ struct polynomial {
 };
 typedef struct polynomial *poly;
 
+poly addNodeAfterGivenNode(poly head, poly ptr, poly pos){
+	ptr->next = pos->next;
+	pos->next = ptr;
+	return head;
+}
+
 poly addNodeAtBeginning(poly head, poly ptr){
 	ptr->next = head;
 	head = ptr;
 	return head;
 }
 
-poly addNodeBeforeGivenNode(poly head, poly ptr, poly tmp){
-	poly tmp2 = head;
-	while(tmp2->next != tmp){
-		tmp2 = tmp2->next;
-	}
-	ptr->next = tmp2->next;
-	tmp2->next = ptr;
-	return head;
-}
-
 poly addTerm(poly head, poly ptr) {
-	poly tmp = head;
-	while(tmp != NULL){
-		if(tmp->exp <= ptr->exp)
-			break;
-		tmp = tmp->next;
-	}
-	if(tmp != NULL && tmp->exp == ptr->exp){
-		tmp->coeff = tmp->coeff + ptr->coeff;
+	// linked list is empty case
+	if(head == NULL){
+		head = ptr;
 		return head;
 	}
-
-	if(tmp == head){
-		// add the node at the beginning
+	poly temp = head;
+	while(temp->exp > ptr->exp){
+		temp = temp->next;
+	}
+	if(temp != NULL && temp->exp == ptr->exp){
+		temp->coeff += ptr->coeff;
+		return head;
+	}
+	// add the node at the beginning
+	if(temp == head){
 		head = addNodeAtBeginning(head, ptr);
 		return head;
 	}
 
-	head = addNodeBeforeGivenNode(head, ptr, tmp);
+	poly pos = head;
+	while(pos->next != temp){
+		pos = pos->next;
+	}
+	head = addNodeAfterGivenNode(head, ptr, pos);
 	return head;
 }
 
 void print(poly head) {
-	poly tmp = head;
-	while(tmp != NULL){
-		printf("%d X^ %d ---> ", tmp->coeff, tmp->exp);
-		tmp = tmp->next;
+	poly temp = head;
+	while(temp != NULL){
+		printf("%d X^ %d ---> ", temp->coeff, temp->exp);
+		temp = temp->next;
 	}
 	printf("NULL\n");
 }
