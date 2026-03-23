@@ -37,7 +37,7 @@ void push(int x){
 }
 int pop(){
     // empty case
-    if(tp < 0){
+    if(size() == 0){
         printf("Stack is empty\n");
         return -1;
     }
@@ -48,7 +48,7 @@ int pop(){
 }
 int top(){
     // empty case
-    if(tp < 0){
+    if(size() == 0){
         printf("Stack is empty\n");
         return -1;
     }
@@ -58,7 +58,7 @@ int size(){
     return tp + 1;
 }
 int empty(){
-    if(tp >= 0){
+    if(size() > 0){
         return 0;
     }
     return 1;
