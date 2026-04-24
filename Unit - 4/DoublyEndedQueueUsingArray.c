@@ -17,6 +17,10 @@ void enqueueFront(int x, DoublyEndedQueue* q){
         printf("Doubly Ended Queue is overflow.\n");
         return;
     }
+    // check if the queue is empty
+    if(q->front == -1 && q->rear == -1){
+        q->rear = newFront;
+    }
     q->front = newFront;
     q->queue[q->front] = x;
     return;
@@ -28,6 +32,10 @@ void enqueueRear(int x, DoublyEndedQueue* q){
     if(newRear == q->front){
         printf("Doubly Ended Queue is overflow.\n");
         return;
+    }
+    // check if the queue is empty
+    if(q->front == -1 && q->rear == -1){
+        q->front = newRear;
     }
     q->rear = newRear;
     q->queue[q->rear] = x;

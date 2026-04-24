@@ -2,42 +2,42 @@
  * Implementation of Stack using Queues
  */
 
-#include "../QueueUsingArray.c"
+#include "../DoublyEndedQueueUsingArray.c"
 
-void push(int elem, Queue* q1, Queue* q2){
+void push(int elem, DoublyEndedQueue* q1, DoublyEndedQueue* q2){
     while(!isEmpty(q1)){
-        int topElement = dequeue(q1);
-        enqueue(topElement, q2);
+        int topElement = dequeueFront(q1);
+        enqueueRear(topElement, q2);
     }
-    enqueue(elem, q1);
+    enqueueRear(elem, q1);
     while(!isEmpty(q2)){
-        int topElement = dequeue(q2);
-        enqueue(topElement, q1);
+        int topElement = dequeueFront(q2);
+        enqueueRear(topElement, q1);
     }
     return;
 }
-int pop(Queue* q1){
-    return dequeue(q1);
+int pop(DoublyEndedQueue* q1){
+    return dequeueFront(q1);
 }
-void displayStack(Queue* q1, Queue* q2){
+void displayStack(DoublyEndedQueue* q1, DoublyEndedQueue* q2){
     while(!isEmpty(q1)){
-        int poppedElement = dequeue(q1);
+        int poppedElement = dequeueFront(q1);
         printf("%d ", poppedElement);
-        enqueue(poppedElement, q2);
+        enqueueRear(poppedElement, q2);
     }
     while(!isEmpty(q2)){
-        int poppedElement = dequeue(q2);
-        enqueue(poppedElement, q1);
+        int poppedElement = dequeueFront(q2);
+        enqueueRear(poppedElement, q1);
     }
     printf("\n");
     return;
 }
-int isEmptyStack(Queue* q1){
+int isEmptyStack(DoublyEndedQueue* q1){
     return isEmpty(q1);
 }
 
 int main(){
-    Queue q1, q2;
+    DoublyEndedQueue q1, q2;
     init(&q1);
     init(&q2);
 
