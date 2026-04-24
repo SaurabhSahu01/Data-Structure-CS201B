@@ -1,4 +1,4 @@
-#include "../Queues.c"
+#include "../DoublyEndedQueueUsingLinkedList.c"
 
 int main(){
     DoublyEndedQueue dq;
