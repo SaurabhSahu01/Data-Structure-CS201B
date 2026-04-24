@@ -1,32 +1,13 @@
 #include<stdio.h>
-#include<stdlib.h>
+#include"QueueBuildingBlock.c"
 
-/*
-*   Doubly Ended Queue using Linked List - Start
-*/
+typedef QueueLL DoublyEndedQueue;
 
-typedef struct Node{
-    int data;
-    struct Node* next;
-    struct Node* prev;
-}Node;
+// Functions for Doubly Ended Queue - Array Based Implementation
 
-typedef struct {
-    Node* front;
-    Node* rear;
-}DoublyEndedQueue;
-
-void init(DoublyEndedQueue* dq){
-    dq->front = dq->rear = NULL;
-}
-
-Node* createNode(int x){
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if(newNode != NULL){
-        newNode->data = x;
-        newNode->prev = newNode->next = NULL;
-    }
-    return newNode;
+void init(DoublyEndedQueue* q){
+    initQueueLL(q);
+    return;
 }
 
 void enqueueFront(int elem, DoublyEndedQueue* dq){
@@ -107,7 +88,8 @@ int dequeueRear(DoublyEndedQueue* dq){
     free(temp);
     return tempData;
 }
-int dequeue(DoublyEndedQueue* dq, int isFront){
+// Generalised method for dequeueRear and dequeueFront, isFront = true (dequeue from front)
+int dequeueDoublyEndedQueue(DoublyEndedQueue* dq, int isFront){
     // check if queue is empty
     if(dq->front == NULL && dq->rear == NULL){
         printf("Queue underflow\n");
@@ -159,6 +141,17 @@ void display(DoublyEndedQueue* dq){
     printf("%d \n", temp->data);
 }
 
-/*
-*   Doubly Ended Queue using Linked List - End
-*/
+int front(DoublyEndedQueue* dq){
+    if(dq->front == NULL && dq->rear == NULL){
+        return -1;
+    }
+    return dq->front->data;
+}
+int rear(DoublyEndedQueue* dq){
+    if(dq->front == NULL && dq->rear == NULL){
+        return -1;
+    }
+    return dq->rear->data;
+}
+
+

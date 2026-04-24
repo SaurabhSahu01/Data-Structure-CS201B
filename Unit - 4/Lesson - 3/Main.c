@@ -1,4 +1,4 @@
-#include "Queues.c"
+#include "../Queues.c"
 
 int main(){
     DoublyEndedQueue dq;
@@ -11,6 +11,6 @@ int main(){
     dequeueFront(&dq);
     dequeueRear(&dq);
     display(&dq);
-    
+
     return 0;
 }
