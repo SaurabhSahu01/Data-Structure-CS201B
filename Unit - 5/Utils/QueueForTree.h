@@ -19,4 +19,6 @@ TreeNode* front(Queue* );
 
 int isEmpty(Queue* );
 
+int sizeOfQueue(Queue* );
+
 #endif

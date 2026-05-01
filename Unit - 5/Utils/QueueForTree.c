@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"QueueForTree.h"
 
-
+int SIZE = 0;
 void init(Queue* q){
     q->front = q->rear = -1;
     q->queue = (TreeNode**)malloc(QUEUE_MAX_SIZE * sizeof(TreeNode *));
@@ -22,6 +22,7 @@ void enqueue(Queue* q, TreeNode* x){
     }
     q->rear = newRear;
     q->queue[newRear] = x;
+    SIZE++;
     return;
 }
 
@@ -35,9 +36,11 @@ TreeNode* dequeue(Queue* q){
     // check for the single condition
     if(q->front == q->rear){
         q->front = q->rear = -1;
+        SIZE--;
         return tempData;
     }
     q->front = (q->front + 1 + QUEUE_MAX_SIZE) % QUEUE_MAX_SIZE;
+    SIZE--;
     return tempData;
 }
 
@@ -52,4 +55,8 @@ TreeNode* front(Queue* q){
 
 int isEmpty(Queue* q){
     return (q->front == -1 && q->rear == -1);
+}
+
+int sizeOfQueue(Queue* q){
+    return SIZE;
 }

@@ -3,4 +3,5 @@
 #include"BuildingBlockTree.h"
 #include"QueueForTree.h"
 void dfs(TreeNode* );
+void bfs(TreeNode* );
 #endif

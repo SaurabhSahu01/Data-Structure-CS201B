@@ -3,9 +3,9 @@
 #include"./Utils/TreeTraversal.h"
 
 int main(){
-    int numberOfNodes = 7;
-    int nodes[] = {1, 2, 3, 4, 5, -1, -1};
+    int numberOfNodes = 11;
+    int nodes[] = {5, 3, 6, 2, 4, -1, -1, -1, -1, -1, -1};
     TreeNode* root = buildTreeFromArray(numberOfNodes, nodes);
-    dfs(root);
+    bfs(root);
     return 0;
 }
